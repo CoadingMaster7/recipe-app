@@ -1,8 +1,15 @@
 /**
+* Fonts
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+
+/**
 * Bootstrap - required
 */
 
 @import 'functions';
+@import 'custom/variables';
 @import 'variables';
 @import 'mixins';
 
