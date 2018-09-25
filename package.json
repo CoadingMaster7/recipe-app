@@ -1,7 +1,7 @@
 {
   "name": "recipe-app",
   "version": "1.0.0",
-  "description": "Simpe recipe app",
+  "description": "Simple recipe app",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,17 +11,26 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.0.0-rc.1",
-    "@babel/preset-env": "^7.0.0-rc.1",
-    "babel-loader": "^8.0.0-beta.4",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.1.5",
+    "babel-loader": "^8.0.2",
+    "css-loader": "^1.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.9.3",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
     "react": "^16.4.2",
+    "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.0"
   }
 }
