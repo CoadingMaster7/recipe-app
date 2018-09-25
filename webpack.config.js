@@ -21,7 +21,7 @@ module.exports = {
     publicPath : '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [
@@ -40,11 +40,6 @@ module.exports = {
           },
           {
             loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              modules: true,
-              localIdentName: '[name]__[local]__[hash:base64:5]'
-            }
           },
           {
             loader: 'postcss-loader',
@@ -61,7 +56,12 @@ module.exports = {
             }
           },
           {
-            loader: 'sass-loader'
+            loader: 'sass-loader',
+            options: {
+              includePaths: [
+                __dirname + '/node_modules/bootstrap/scss'
+              ]
+            }
           }
         ]
       }
