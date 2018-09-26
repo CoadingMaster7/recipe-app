@@ -1,7 +1,17 @@
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const webpack = require('webpack');
+
+const StyleLintPluginConfig = new StyleLintPlugin({
+  configFile: '.stylelintrc',
+  context: 'src',
+  files: '**/*.scss',
+  failOnError: false,
+  quiet: false,
+  syntax: 'scss'
+});
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/src/index.html',
@@ -71,5 +81,8 @@ module.exports = {
       }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [
+    HtmlWebpackPluginConfig,
+    StyleLintPluginConfig
+  ]
 };
