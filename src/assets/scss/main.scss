@@ -4,6 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
 
+
 /**
 * Bootstrap - required
 */
@@ -31,3 +32,10 @@
 @import 'media';
 @import 'list-group';
 @import 'utilities';
+
+
+/**
+* Custom styles
+*/
+
+@import 'custom/navbar';

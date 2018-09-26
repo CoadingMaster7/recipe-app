@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Layout from './components/Layout';
 
-class App extends Component {
-  render() {
-    return (
-      <h1>Recipe app</h1>
-    );
-  }
-};
+const App = () => (
+  <Layout />
+);
 
 export default App;
