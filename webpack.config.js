@@ -6,10 +6,7 @@ const webpack = require('webpack');
 
 const StyleLintPluginConfig = new StyleLintPlugin({
   configFile: '.stylelintrc',
-  context: 'src',
-  files: '**/*.scss',
-  failOnError: false,
-  quiet: false,
+  context: 'src/assets/scss',
   syntax: 'scss'
 });
 
@@ -39,12 +36,15 @@ module.exports = {
         enforce: "pre",
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'eslint-loader'
+        loader: 'eslint-loader',
+        options: {
+          fix: true
+        }
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
       },
       {
         test: /\.scss$/,
@@ -78,6 +78,10 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        loader: 'url-loader?limit=8000&name=images/[name].[ext]'
       }
     ]
   },
