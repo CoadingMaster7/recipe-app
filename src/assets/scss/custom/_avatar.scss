@@ -1,0 +1,17 @@
+.avatar {
+  border-radius: 50%;
+  display: inline-block;
+  height: $avatar-size;
+  overflow: hidden;
+  position: relative;
+  width: $avatar-size;
+
+  img {
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+  }
+}
