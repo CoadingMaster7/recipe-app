@@ -1,11 +1,14 @@
 import React from 'react';
-import { Container, Navbar, NavbarBrand } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Container, Navbar } from 'reactstrap';
 
 const Topbar = () => (
   <header>
     <Navbar className="shadow" color="white" light>
       <Container>
-        <NavbarBrand>Recipe App</NavbarBrand>
+        <Link className="navbar-brand" to='/'>
+          Recipe App
+        </Link>
       </Container>
     </Navbar>
   </header>
