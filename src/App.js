@@ -7,12 +7,14 @@ import {
 } from 'react-router-dom';
 
 import Layout from './components/Layout';
-import Recipes from './containers/Recipes';
+import RecipesPage from './containers/RecipesPage';
+import RecipePage from './containers/RecipePage';
 
 const App = () => (
   <Layout>
     <Switch>
-      <Route path="/" exact component={Recipes} />
+      <Route path="/" exact component={RecipesPage} />
+      <Route path="/recipe/:id" exact component={RecipePage} />
       <Redirect to="/" />
     </Switch>
   </Layout>

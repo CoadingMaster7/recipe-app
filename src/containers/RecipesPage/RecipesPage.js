@@ -8,10 +8,21 @@ import RecipesList from '../../components/RecipesList';
 import BtnIcon from '../../components/UI/BtnIcon';
 import { fetchRecipes } from '../../store/actions/recipes';
 
-class Recipes extends Component {
+class RecipesPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleRecipeClick = this.handleRecipeClick.bind(this);
+  }
+
   componentDidMount() {
     const { actions } = this.props;
     actions.fetchRecipes();
+  }
+
+  handleRecipeClick(id) {
+    const { history } = this.props;
+    history.push(`/recipe/${id}`);
   }
 
   render() {
@@ -37,7 +48,7 @@ class Recipes extends Component {
         </Row>
         <Row className="justify-content-center">
           <Col md={10} lg={8}>
-            <RecipesList items={recipes} />
+            <RecipesList recipes={recipes} onRecipeClick={this.handleRecipeClick} />
           </Col>
         </Row>
       </Container>
@@ -45,17 +56,17 @@ class Recipes extends Component {
   }
 }
 
-Recipes.propTypes = {
+RecipesPage.propTypes = {
   actions: PropTypes.shape({
     fetchRecipes: PropTypes.func,
-  }),
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
   recipes: PropTypes.arrayOf(PropTypes.object),
 };
 
-Recipes.defaultProps = {
-  actions: {
-    fetchRecipes: () => {},
-  },
+RecipesPage.defaultProps = {
   recipes: [],
 };
 
@@ -69,4 +80,4 @@ const mapDispatchToProps = (dispatch) => ({
   }, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipesPage);
