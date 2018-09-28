@@ -2,7 +2,7 @@
 * Fonts
 */
 
-@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400');
 
 
 /**
@@ -38,5 +38,8 @@
 * Custom styles
 */
 
+@import 'custom/mixins';
+
 @import 'custom/avatar';
+@import 'custom/buttons';
 @import 'custom/navbar';

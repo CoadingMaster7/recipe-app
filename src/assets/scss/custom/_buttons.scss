@@ -1,0 +1,18 @@
+.btn-icon {
+  @include btn-icon-size($btn-icon-size, $font-size-base);
+  border-radius: 50%;
+  line-height: $line-height-base;
+  padding: 0;
+  position: relative;
+
+  &.btn-sm {
+    @include btn-icon-size($btn-icon-size-sm, $font-size-sm);
+  }
+
+  [class*='fa'] {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
