@@ -88,5 +88,8 @@ module.exports = {
   plugins: [
     HtmlWebpackPluginConfig,
     StyleLintPluginConfig
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true,
+  }
 };
