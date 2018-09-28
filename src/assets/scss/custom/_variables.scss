@@ -4,10 +4,12 @@
 
 $white: #fff;
 $cod-gray: #151515;
+$dusty-gray: #999;
 $mercury: #e5e5e5;
 $wild-sand: #f5f5f5;
 $black: #000;
 
+$secondary: $mercury;
 $dark: $cod-gray;
 
 $theme-colors: (
@@ -27,7 +29,9 @@ $body-color: $dark;
 */
 
 $font-family-sans-serif: 'Nunito Sans', sans-serif;
+
 $font-size-base: 1rem;
+$font-size-sm: ($font-size-base * 0.75);
 
 $font-weight-light: 300;
 $font-weight-normal: 400;
@@ -58,8 +62,19 @@ $avatar-size: 5rem;
 
 
 /**
+* Buttons + Forms
+*/
+
+$input-btn-padding-y: 0.9375rem;
+$input-btn-padding-x: 0.9375rem;
+
+
+/**
 * Buttons
 */
+
+$btn-padding-y: $input-btn-padding-y;
+$btn-padding-x: ($input-btn-padding-x * 2);
 
 $btn-icon-size: 3.275rem;
 $btn-icon-size-sm: 2.5rem;
@@ -70,3 +85,15 @@ $btn-icon-size-sm: 2.5rem;
 */
 
 $card-border-color: transparent;
+
+
+/**
+* Forms
+*/
+
+$label-margin-bottom: 0.25rem;
+$label-letter-spacing: 0.1em;
+
+$input-color: $cod-gray;
+$input-border-color: $mercury;
+$input-focus-box-shadow: transparent;

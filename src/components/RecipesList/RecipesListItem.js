@@ -7,7 +7,7 @@ import BtnIcon from '../UI/BtnIcon';
 import image from '../../assets/img/salad.jpg';
 
 const RecipesListItem = ({ item, onClick }) => (
-  <Card className="shadow mb-2" onClick={onClick}>
+  <Card className="list-item shadow mb-2" onClick={onClick}>
     <CardBody>
       <Row className="align-items-center justify-content-between">
         <Col xs={9}>
