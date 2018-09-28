@@ -12,12 +12,18 @@ class RecipesPage extends Component {
   constructor(props) {
     super(props);
 
+    this.handleAddRecipeClick = this.handleAddRecipeClick.bind(this);
     this.handleRecipeClick = this.handleRecipeClick.bind(this);
   }
 
   componentDidMount() {
     const { actions } = this.props;
     actions.fetchRecipes();
+  }
+
+  handleAddRecipeClick() {
+    const { history } = this.props;
+    history.push('/add');
   }
 
   handleRecipeClick(id) {
@@ -41,6 +47,7 @@ class RecipesPage extends Component {
                   className="shadow"
                   color="light"
                   icon="plus"
+                  onClick={this.handleAddRecipeClick}
                 />
               </Col>
             </Row>

@@ -9,12 +9,14 @@ import {
 import Layout from './components/Layout';
 import RecipesPage from './containers/RecipesPage';
 import RecipePage from './containers/RecipePage';
+import RecipeAddPage from './containers/RecipeAddPage';
 
 const App = () => (
   <Layout>
     <Switch>
       <Route path="/" exact component={RecipesPage} />
-      <Route path="/recipe/:id" exact component={RecipePage} />
+      <Route path="/add" component={RecipeAddPage} />
+      <Route path="/recipe/:recipeId" component={RecipePage} />
       <Redirect to="/" />
     </Switch>
   </Layout>
