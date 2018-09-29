@@ -6,7 +6,8 @@ import { bindActionCreators } from 'redux';
 import { Container, Row, Col } from 'reactstrap';
 import RecipesList from '../../components/RecipesList';
 import BtnIcon from '../../components/UI/BtnIcon';
-import { fetchRecipes } from '../../store/actions/recipes';
+import { fetchAllRecipesIfNeeded  } from '../../store/actions/recipes';
+import { getAllRecipes } from '../../store/selectors/recipes';
 
 class RecipesPage extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class RecipesPage extends Component {
 
   componentDidMount() {
     const { actions } = this.props;
-    actions.fetchRecipes();
+    actions.fetchAllRecipesIfNeeded();
   }
 
   handleAddRecipeClick() {
@@ -55,7 +56,10 @@ class RecipesPage extends Component {
         </Row>
         <Row className="justify-content-center">
           <Col md={10} lg={8}>
-            <RecipesList recipes={recipes} onRecipeClick={this.handleRecipeClick} />
+            <RecipesList
+              recipes={recipes}
+              onRecipeClick={this.handleRecipeClick}
+            />
           </Col>
         </Row>
       </Container>
@@ -65,7 +69,7 @@ class RecipesPage extends Component {
 
 RecipesPage.propTypes = {
   actions: PropTypes.shape({
-    fetchRecipes: PropTypes.func,
+    fetchAllRecipesIfNeeded: PropTypes.func,
   }).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
@@ -78,12 +82,12 @@ RecipesPage.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  recipes: state.recipes.data,
+  recipes: getAllRecipes(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
-    fetchRecipes,
+    fetchAllRecipesIfNeeded,
   }, dispatch),
 });
 
