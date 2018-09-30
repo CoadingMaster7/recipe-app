@@ -6,19 +6,32 @@ import {
   Redirect,
 } from 'react-router-dom';
 
+import asyncComponent from './hoc/asyncComponent';
 import Layout from './components/Layout';
-import RecipesPage from './containers/RecipesPage';
-import RecipePage from './containers/RecipePage';
-import RecipeAddPage from './containers/RecipeAddPage';
-import RecipeEditPage from './containers/RecipeEditPage';
+
+const asyncReipesPage = asyncComponent(() => {
+  return import('./containers/RecipesPage');
+});
+
+const asyncRecipePage = asyncComponent(() => {
+  return import('./containers/RecipePage');
+});
+
+const asyncRecipeAddPage = asyncComponent(() => {
+  return import('./containers/RecipeAddPage');
+});
+
+const asyncRecipeEditPage = asyncComponent(() => {
+  return import('./containers/RecipeEditPage');
+});
 
 const App = () => (
   <Layout>
     <Switch>
-      <Route path="/" exact component={RecipesPage} />
-      <Route path="/add" component={RecipeAddPage} />
-      <Route path="/recipe/:recipeId/edit" component={RecipeEditPage} />
-      <Route path="/recipe/:recipeId" component={RecipePage} />
+      <Route path="/recipe/:recipeId/edit" component={asyncRecipeEditPage} />
+      <Route path="/recipe/:recipeId" component={asyncRecipePage} />
+      <Route path="/add" component={asyncRecipeAddPage} />
+      <Route path="/" exact component={asyncReipesPage} />
       <Redirect to="/" />
     </Switch>
   </Layout>
