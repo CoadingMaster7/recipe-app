@@ -15,6 +15,29 @@ class RecipeForm extends Component {
    this.handleFormSubmit = this.handleFormSubmit.bind(this);
  }
 
+ componentDidMount() {
+   const { recipe } = this.props;
+
+   if (recipe) {
+     this.setDefaultState(recipe);
+   }
+ }
+
+ componentWillReceiveProps(nextProps) {
+   if (nextProps.recipe !== this.state.recipe) {
+     this.setDefaultState(nextProps.recipe);
+   }
+ }
+
+ setDefaultState(recipe) {
+   const { title, content } = recipe;
+
+   this.setState({
+     title,
+     content,
+   });
+ }
+
  handleInputChange({ target }) {
     const { name, value } = target;
 
@@ -32,7 +55,7 @@ class RecipeForm extends Component {
 
   render() {
     const { title, content } = this.state;
-    const { onCancel } = this.props;
+    const { submitLabel, cancelLabel, onCancel } = this.props;
 
     return (
       <Form onSubmit={this.handleFormSubmit}>
@@ -43,6 +66,7 @@ class RecipeForm extends Component {
             type="text"
             name="title"
             value={title}
+            required
             onChange={this.handleInputChange}
           />
         </FormGroup>
@@ -54,24 +78,36 @@ class RecipeForm extends Component {
             rows="10"
             name="content"
             value={content}
+            required
             onChange={this.handleInputChange}
           />
         </FormGroup>
         <Button className="mr-2" color="secondary" onClick={onCancel}>
-          Back
+          {cancelLabel}
         </Button>
-        <Button color="secondary" type="submit">Add Recipe</Button>
+        <Button color="secondary" type="submit">
+          {submitLabel}
+        </Button>
       </Form>
     );
   }
 }
 
 RecipeForm.propTypes = {
+  recipe: PropTypes.shape({
+    title: PropTypes.string,
+    content: PropTypes.string
+  }),
+  submitLabel: PropTypes.string,
+  cancelLabel: PropTypes.string,
   onSubmit: PropTypes.func,
   onCancel: PropTypes.func,
 }
 
 RecipeForm.defaultProps = {
+  recipe: null,
+  submitLabel: 'Submit',
+  cancelLabel: 'Cancel',
   onSubmit: () => {},
   onCancel: () => {},
 };

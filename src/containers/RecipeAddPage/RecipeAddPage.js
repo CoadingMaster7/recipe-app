@@ -34,6 +34,8 @@ class RecipeAddPage extends Component {
         <Row className="justify-content-center">
           <Col md={10} lg={8}>
             <RecipeForm
+              submitLabel="Add Recipe"
+              cancelLabel="Back"
               onSubmit={this.handleFormSubmit}
               onCancel={this.backToRecipesList}
             />
