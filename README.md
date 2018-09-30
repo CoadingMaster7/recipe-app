@@ -10,6 +10,8 @@ In project directory run:
 
 ## API
 
+The only dependency is Docker, you can get it from https://www.docker.com/community-edition#/download
+
 To start api run:
 
 * `./start-api.sh`
