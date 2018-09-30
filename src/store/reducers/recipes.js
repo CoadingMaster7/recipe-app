@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { omit } from 'lodash';
 import * as actionTypes from '../enums/actionTypes';
 
 const byId = (state = {}, action) => {
@@ -12,6 +13,9 @@ const byId = (state = {}, action) => {
         ...state,
         ...action.response.entities.recipes,
       };
+
+    case actionTypes.DELETE_RECIPE_SUCCESS:
+      return omit(state, action.response.id);
 
     default:
       return state;
@@ -31,6 +35,9 @@ const allIds = (state = [], action) => {
         action.response.result,
       ];
     }
+
+    case actionTypes.DELETE_RECIPE_SUCCESS:
+      return state.filter((id) => id !== action.response.id );
 
     default:
       return state;

@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { Container, Row, Col } from 'reactstrap';
 import RecipesList from '../../components/RecipesList';
 import BtnIcon from '../../components/UI/BtnIcon';
-import { fetchAllRecipesIfNeeded  } from '../../store/actions/recipes';
+import { fetchAllRecipesIfNeeded, deleteRecipe } from '../../store/actions/recipes';
 import { getAllRecipes } from '../../store/selectors/recipes';
 
 class RecipesPage extends Component {
@@ -15,6 +15,7 @@ class RecipesPage extends Component {
 
     this.handleAddRecipeClick = this.handleAddRecipeClick.bind(this);
     this.handleRecipeClick = this.handleRecipeClick.bind(this);
+    this.handleRecipeDelete = this.handleRecipeDelete.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,11 @@ class RecipesPage extends Component {
   handleRecipeClick(id) {
     const { history } = this.props;
     history.push(`/recipe/${id}`);
+  }
+
+  handleRecipeDelete(id) {
+    const { actions } = this.props;
+    actions.deleteRecipe(id);
   }
 
   render() {
@@ -59,6 +65,7 @@ class RecipesPage extends Component {
             <RecipesList
               recipes={recipes}
               onRecipeClick={this.handleRecipeClick}
+              onRecipeDelete={this.handleRecipeDelete}
             />
           </Col>
         </Row>
@@ -70,6 +77,7 @@ class RecipesPage extends Component {
 RecipesPage.propTypes = {
   actions: PropTypes.shape({
     fetchAllRecipesIfNeeded: PropTypes.func,
+    deleteRecipe: PropTypes.func,
   }).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func,
@@ -88,6 +96,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     fetchAllRecipesIfNeeded,
+    deleteRecipe,
   }, dispatch),
 });
 

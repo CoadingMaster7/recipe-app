@@ -114,3 +114,29 @@ export const addRecipe = (recipe) => (dispatch) => {
     .then((res) => dispatch(addRecipeSuccess(res)))
     .catch((err) => dispatch(addRecipeFail(err)));
 };
+
+/**
+* Delete recipe
+*/
+
+const deleteRecipeStart = () => ({
+  type: actionTypes.DELETE_RECIPE_START,
+});
+
+const deleteRecipeFail = (error) => ({
+  type: actionTypes.DELETE_RECIPE_FAIL,
+  error,
+});
+
+const deleteRecipeSuccess = (response) => ({
+  type: actionTypes.DELETE_RECIPE_SUCCESS,
+  response,
+});
+
+export const deleteRecipe = (recipeId) => (dispatch) => {
+  dispatch(deleteRecipeStart());
+
+  return axios.post('/_delete', { id: recipeId })
+    .then(() => dispatch(deleteRecipeSuccess({ id: recipeId })))
+    .catch((err) => dispatch(deleteRecipeFail(err)));
+}
