@@ -7,6 +7,7 @@ const byId = (state = {}, action) => {
       return action.response.entities.recipes;
 
     case actionTypes.FETCH_RECIPE_SUCCESS:
+    case actionTypes.ADD_RECIPE_SUCCESS:
       return {
         ...state,
         ...action.response.entities.recipes,
@@ -23,7 +24,8 @@ const allIds = (state = [], action) => {
       return action.response.result
     }
 
-    case actionTypes.FETCH_RECIPE_SUCCESS: {
+    case actionTypes.FETCH_RECIPE_SUCCESS:
+    case actionTypes.ADD_RECIPE_SUCCESS: {
       return [
         ...state,
         action.response.result,

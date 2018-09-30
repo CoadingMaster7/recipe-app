@@ -87,3 +87,30 @@ export const fetchRecipeIfNeeded = (recipeId) => (dispatch, getState) => {
     return Promise.resolve();
   }
 };
+
+/**
+* Add recipe
+*/
+
+const addRecipeStart = () => ({
+  type: actionTypes.ADD_RECIPE_START,
+});
+
+const addRecipeFail = (error) => ({
+  type: actionTypes.ADD_RECIPE_FAIL,
+  error,
+});
+
+const addRecipeSuccess = (response) => ({
+  type: actionTypes.ADD_RECIPE_SUCCESS,
+  response,
+});
+
+export const addRecipe = (recipe) => (dispatch) => {
+  dispatch(addRecipeStart());
+
+  return axios.post('/_store', recipe)
+    .then((res) => normalize({ ...recipe, id: res.data.id }, schema.recipeSchema))
+    .then((res) => dispatch(addRecipeSuccess(res)))
+    .catch((err) => dispatch(addRecipeFail(err)));
+};
