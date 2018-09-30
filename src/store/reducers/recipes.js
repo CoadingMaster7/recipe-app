@@ -9,6 +9,7 @@ const byId = (state = {}, action) => {
 
     case actionTypes.FETCH_RECIPE_SUCCESS:
     case actionTypes.ADD_RECIPE_SUCCESS:
+    case actionTypes.UPDATE_RECIPE_SUCCESS:
       return {
         ...state,
         ...action.response.entities.recipes,

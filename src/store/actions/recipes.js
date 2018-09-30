@@ -116,6 +116,33 @@ export const addRecipe = (recipe) => (dispatch) => {
 };
 
 /**
+* Update recipe
+*/
+
+const updateRecipeStart = () => ({
+  type: actionTypes.UPDATE_RECIPE_START,
+});
+
+const updateRecipeFail = (error) => ({
+  type: actionTypes.UPDATE_RECIPE_FAIL,
+  error,
+});
+
+const updateRecipeSuccess = (response) => ({
+  type: actionTypes.UPDATE_RECIPE_SUCCESS,
+  response,
+});
+
+export const updateRecipe = (recipe) => (dispatch) => {
+  dispatch(updateRecipeStart());
+
+  return axios.post('/_store', recipe)
+    .then(() => normalize(recipe, schema.recipeSchema))
+    .then((res) => dispatch(updateRecipeSuccess(res)))
+    .catch((err) => dispatch(updateRecipeFail(err)));
+};
+
+/**
 * Delete recipe
 */
 
