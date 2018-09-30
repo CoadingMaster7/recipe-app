@@ -1,3 +1,6 @@
 .list-item {
   cursor: pointer;
+  @include hover {
+    border-color: darken($wild-sand, 5%);
+  }
 }
