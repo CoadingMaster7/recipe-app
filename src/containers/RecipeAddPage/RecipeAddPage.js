@@ -11,16 +11,20 @@ class RecipeAddPage extends Component {
   constructor(props) {
     super(props);
 
+    this.backToRecipesList = this.backToRecipesList.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+
+  backToRecipesList() {
+    const { history } = this.props;
+    history.push('/');
   }
 
   handleFormSubmit(recipe) {
     const { actions, history } = this.props;
 
     actions.addRecipe(recipe)
-      .then(() => {
-        history.push('/');
-      });
+      .then(this.backToRecipesList);
   }
 
   render() {
@@ -29,7 +33,10 @@ class RecipeAddPage extends Component {
         <h1 className="text-center">Create New Recipe</h1>
         <Row className="justify-content-center">
           <Col md={10} lg={8}>
-            <RecipeForm onSubmit={this.handleFormSubmit} />
+            <RecipeForm
+              onSubmit={this.handleFormSubmit}
+              onCancel={this.backToRecipesList}
+            />
           </Col>
         </Row>
       </Container>

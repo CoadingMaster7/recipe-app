@@ -32,6 +32,7 @@ class RecipeForm extends Component {
 
   render() {
     const { title, content } = this.state;
+    const { onCancel } = this.props;
 
     return (
       <Form onSubmit={this.handleFormSubmit}>
@@ -56,6 +57,9 @@ class RecipeForm extends Component {
             onChange={this.handleInputChange}
           />
         </FormGroup>
+        <Button className="mr-2" color="secondary" onClick={onCancel}>
+          Back
+        </Button>
         <Button color="secondary" type="submit">Add Recipe</Button>
       </Form>
     );
@@ -64,10 +68,12 @@ class RecipeForm extends Component {
 
 RecipeForm.propTypes = {
   onSubmit: PropTypes.func,
+  onCancel: PropTypes.func,
 }
 
 RecipeForm.defaultProps = {
   onSubmit: () => {},
+  onCancel: () => {},
 };
 
 export default RecipeForm;
