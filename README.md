@@ -1,14 +1,17 @@
 # recipe-app
 
-Showcase of sidebar menu component - simple transition of opening and closing the sidebar menu
+## Frontend
 
-## Installation
+In project directory run:
 
-* `git clone git@github.com:paulinamasiak/recipe-app.git`
-* `cd recipe-app`
-* `yarn install`
-* `yarn start`
-* visit http://localhost:3000/
+* `npm install`
+* `npm start`
+*  visit http://localhost:8080/
+
+## API
 
 To start api run:
+
 * `./start-api.sh`
+
+The API is available via `localhost` on port `8088`
