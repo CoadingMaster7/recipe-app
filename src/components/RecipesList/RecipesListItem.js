@@ -11,12 +11,20 @@ class RecipesListItem extends PureComponent {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleClick() {
     const { item, onClick } = this.props;
     onClick(item.id);
+  }
+
+  handleEdit(event) {
+    event.stopPropagation();
+
+    const { item, onEdit } = this.props;
+    onEdit(item.id);
   }
 
   handleDelete(event) {
@@ -49,6 +57,7 @@ class RecipesListItem extends PureComponent {
                 size="sm"
                 icon={['far', 'edit']}
                 outline
+                onClick={this.handleEdit}
               />
               <BtnIcon
                 className="m-1"
@@ -73,11 +82,13 @@ RecipesListItem.propTypes = {
     title: PropTypes.string,
   }).isRequired,
   onClick: PropTypes.func,
+  onEdit: PropTypes.func,
   onDelete: PropTypes.func,
 };
 
 RecipesListItem.defaultProps = {
   onClick: () => {},
+  onEdit: () => {},
   onDelete: () => {},
 };
 

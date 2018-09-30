@@ -5,7 +5,7 @@ import * as actionTypes from '../enums/actionTypes';
 const byId = (state = {}, action) => {
   switch (action.type) {
     case actionTypes.FETCH_ALL_RECIPES_SUCCESS:
-      return action.response.entities.recipes;
+      return action.response.entities.recipes || {};
 
     case actionTypes.FETCH_RECIPE_SUCCESS:
     case actionTypes.ADD_RECIPE_SUCCESS:

@@ -21,7 +21,7 @@ class RecipeAddPage extends Component {
   }
 
   handleFormSubmit(recipe) {
-    const { actions, history } = this.props;
+    const { actions } = this.props;
 
     actions.addRecipe(recipe)
       .then(this.backToRecipesList);

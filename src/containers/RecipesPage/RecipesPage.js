@@ -15,6 +15,7 @@ class RecipesPage extends Component {
 
     this.handleAddRecipeClick = this.handleAddRecipeClick.bind(this);
     this.handleRecipeClick = this.handleRecipeClick.bind(this);
+    this.handleRecipeEdit = this.handleRecipeEdit.bind(this);
     this.handleRecipeDelete = this.handleRecipeDelete.bind(this);
   }
 
@@ -31,6 +32,11 @@ class RecipesPage extends Component {
   handleRecipeClick(id) {
     const { history } = this.props;
     history.push(`/recipe/${id}`);
+  }
+
+  handleRecipeEdit(id) {
+    const { history } = this.props;
+    history.push(`/recipe/${id}/edit`);
   }
 
   handleRecipeDelete(id) {
@@ -65,6 +71,7 @@ class RecipesPage extends Component {
             <RecipesList
               recipes={recipes}
               onRecipeClick={this.handleRecipeClick}
+              onRecipeEdit={this.handleRecipeEdit}
               onRecipeDelete={this.handleRecipeDelete}
             />
           </Col>

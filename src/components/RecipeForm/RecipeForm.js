@@ -26,7 +26,7 @@ class RecipeForm extends Component {
  componentWillReceiveProps(nextProps) {
    const { recipe } = this.props;
 
-   if (nextProps.recipe !== recipe) {
+   if (nextProps.recipe && (nextProps.recipe !== recipe)) {
      this.setDefaultState(nextProps.recipe);
    }
  }
@@ -35,8 +35,8 @@ class RecipeForm extends Component {
    const { title, content } = recipe;
 
    this.setState({
-     title,
-     content,
+     title: title || '',
+     content: content || '',
    });
  }
 
@@ -87,7 +87,7 @@ class RecipeForm extends Component {
         <Button className="mr-2" color="secondary" onClick={onCancel}>
           {cancelLabel}
         </Button>
-        <Button color="secondary" type="submit">
+        <Button color="primary" type="submit">
           {submitLabel}
         </Button>
       </Form>
@@ -98,7 +98,7 @@ class RecipeForm extends Component {
 RecipeForm.propTypes = {
   recipe: PropTypes.shape({
     title: PropTypes.string,
-    content: PropTypes.string
+    content: PropTypes.string,
   }),
   submitLabel: PropTypes.string,
   cancelLabel: PropTypes.string,
