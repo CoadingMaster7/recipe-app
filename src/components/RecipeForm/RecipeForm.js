@@ -24,7 +24,9 @@ class RecipeForm extends Component {
  }
 
  componentWillReceiveProps(nextProps) {
-   if (nextProps.recipe !== this.state.recipe) {
+   const { recipe } = this.props;
+
+   if (nextProps.recipe !== recipe) {
      this.setDefaultState(nextProps.recipe);
    }
  }
