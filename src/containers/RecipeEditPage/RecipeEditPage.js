@@ -42,7 +42,7 @@ class RecipeEditPage extends Component {
         <Row className="justify-content-center">
           <Col md={10} lg={8}>
             <RecipeForm
-              recipe={recipe}
+              initialValues={recipe}
               submitLabel="Save changes"
               cancelLabel="Back"
               onSubmit={this.handleFormSubmit}

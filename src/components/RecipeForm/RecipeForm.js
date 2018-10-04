@@ -1,102 +1,63 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form as FinalForm, Field as FinalField } from 'react-final-form';
+import { Button, Form, FormFeedback, FormGroup, Label, Input } from 'reactstrap';
+import { required } from '../../shared/validators';
 
-class RecipeForm extends Component {
-  constructor(props) {
-   super(props);
-
-   this.state = {
-     title: '',
-     content: '',
-   };
-
-   this.handleInputChange = this.handleInputChange.bind(this);
-   this.handleFormSubmit = this.handleFormSubmit.bind(this);
- }
-
- componentDidMount() {
-   const { recipe } = this.props;
-
-   if (recipe) {
-     this.setDefaultState(recipe);
-   }
- }
-
- componentWillReceiveProps(nextProps) {
-   const { recipe } = this.props;
-
-   if (nextProps.recipe && (nextProps.recipe !== recipe)) {
-     this.setDefaultState(nextProps.recipe);
-   }
- }
-
- setDefaultState(recipe) {
-   const { title, content } = recipe;
-
-   this.setState({
-     title: title || '',
-     content: content || '',
-   });
- }
-
- handleInputChange({ target }) {
-    const { name, value } = target;
-
-    this.setState({
-      [name]: value,
-    });
-  }
-
-  handleFormSubmit(event) {
-    event.preventDefault();
-
-    const { onSubmit } = this.props;
-    onSubmit(this.state);
-  }
-
-  render() {
-    const { title, content } = this.state;
-    const { submitLabel, cancelLabel, onCancel } = this.props;
-
-    return (
-      <Form onSubmit={this.handleFormSubmit}>
-        <FormGroup>
-          <Label htmlFor="title">Title</Label>
-          <Input
-            id="title"
-            type="text"
-            name="title"
-            value={title}
-            required
-            onChange={this.handleInputChange}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor="content">Description</Label>
-          <Input
-            id="content"
-            type="textarea"
-            rows="10"
-            name="content"
-            value={content}
-            required
-            onChange={this.handleInputChange}
-          />
-        </FormGroup>
+const RecipeForm = ({
+  initialValues,
+  submitLabel,
+  cancelLabel,
+  onSubmit,
+  onCancel,
+}) => (
+  <FinalForm
+    onSubmit={onSubmit}
+    initialValues={initialValues}
+    render={({ handleSubmit, pristine, invalid}) => (
+      <Form onSubmit={handleSubmit}>
+        <FinalField name="title" validate={required}>
+          {({ input, meta }) => (
+            <FormGroup>
+              <Label htmlFor="title">Title</Label>
+              <Input
+                id="title"
+                type="text"
+                invalid={meta.invalid && meta.touched}
+                {...input}
+              />
+              <FormFeedback>{meta.error}</FormFeedback>
+            </FormGroup>
+          )}
+        </FinalField>
+        <FinalField name="content" validate={required}>
+          {({ input, meta }) => (
+            <FormGroup>
+              <Label htmlFor="content">Description</Label>
+              <Input
+                id="content"
+                type="textarea"
+                rows="10"
+                invalid={meta.invalid && meta.touched}
+                {...input}
+              />
+              <FormFeedback>{meta.error}</FormFeedback>
+            </FormGroup>
+          )}
+        </FinalField>
         <Button className="mr-2" color="secondary" onClick={onCancel}>
           {cancelLabel}
         </Button>
-        <Button color="primary" type="submit">
+        <Button color="primary" type="submit" disabled={invalid || pristine}>
           {submitLabel}
         </Button>
       </Form>
-    );
-  }
-}
+    )}
+  />
+);
 
 RecipeForm.propTypes = {
-  recipe: PropTypes.shape({
+  initialValues: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,
   }),
@@ -107,7 +68,10 @@ RecipeForm.propTypes = {
 }
 
 RecipeForm.defaultProps = {
-  recipe: null,
+  initialValues: {
+    title: '',
+    content: '',
+  },
   submitLabel: 'Submit',
   cancelLabel: 'Cancel',
   onSubmit: () => {},
